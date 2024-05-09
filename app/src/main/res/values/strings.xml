@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Brädspelskompaniet</string>
+    <string name="action_internal_web">Om oss</string>
+    <string name="recycler_view">Lista</string>
 </resources>
