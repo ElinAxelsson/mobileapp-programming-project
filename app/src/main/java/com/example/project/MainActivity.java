@@ -13,18 +13,24 @@ import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
-    private final String JSON_URL="https://mobprog.webug.se/json-api?login=a23gabst";
+    private Gson gson;
+    private static final Object JSON_FILE = "spel.json";
+    private final String JSON_URL="https://mobprog.webug.se/json-api?login=a23eliax";
 
-    private ArrayList<Spel> spel= new ArrayList<>();
-    private ArrayList<RecyclerViewItem> recyclerViewItems=new ArrayList<>();
+    ArrayList<Spel> spel= new ArrayList<>();
+    ArrayList<RecyclerViewItem> recyclerViewItems=new ArrayList<>();
     private RecyclerViewAdapter adapter;
 
     public void showInternalWebPage(){
-        // TODO: Add your code for showing internal web page here
         WebView webView = findViewById(R.id.My_WebView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
@@ -43,16 +49,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         myWebView = findViewById(R.id.My_WebView);
         myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
 
-        spel.add(new Spel("a23eliax_1","a23eliax", "Catan", "Brädspel", 399));
-        spel.add(new Spel("a23eliax_2","a23eliax", "Ticket to Ride", "Brädspel", 299));
-        spel.add(new Spel("a23eliax_4","a23eliax", "Uno", "Kortspel", 49));
-        spel.add(new Spel("a23eliax_5","a23eliax", "Risk", "Brädspel", 349));
-        spel.add(new Spel("a23eliax_6","a23eliax", "Monopol", "Brädspel", 249));
-
-        for (int i=0;i<spel.size();i++) {
-            Log.d("Logga", spel.get(i).toString());
-            recyclerViewItems.add(new RecyclerViewItem(spel.get(i).toString()));
-        }
+        gson = new Gson();
 
         adapter=new RecyclerViewAdapter(this, recyclerViewItems, new RecyclerViewAdapter.OnClickListener() {
             @Override
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        new JsonFile(this, this).execute((String) JSON_FILE);
         new JsonTask(this).execute(JSON_URL);
     }
 
@@ -82,10 +79,21 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         return super.onOptionsItemSelected(item);
     }
-
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onPostExecute(String json) {
-
+        Log.d("Hej", "" + json);
+        Type type = new TypeToken<List<Spel>>() {}.getType();
+        List<Spel> listOfMountains = gson.fromJson(json, type);
+        spel.clear();
+        if(listOfMountains != null) {
+            spel.addAll(listOfMountains);
+            for (int i = 0; i < spel.size(); i++) {
+                Log.d("Elinparsear", spel.get(i).toString());
+                recyclerViewItems.add(new RecyclerViewItem(spel.get(i).toString()));
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
 }

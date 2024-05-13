@@ -1,0 +1,57 @@
+[
+  {
+    "ID": "a23eliax_1",
+    "name": "Catan",
+    "type": "a23eliax",
+    "company": "",
+    "location": "",
+    "category": "Brädspel",
+    "size": 0,
+    "cost": 399,
+    "auxdata": ""
+  },
+  {
+    "ID": "a23eliax_2",
+    "name": "Ticket to Ride",
+    "type": "a23eliax",
+    "company": "",
+    "location": "",
+    "category": "Brädspel",
+    "size": 0,
+    "cost": 299,
+    "auxdata": ""
+  },
+  {
+    "ID": "a23eliax_4",
+    "name": "Uno",
+    "type": "a23eliax",
+    "company": "",
+    "location": "",
+    "category": "Kortspel",
+    "size": 0,
+    "cost": 49,
+    "auxdata": ""
+  },
+  {
+    "ID": "a23eliax_5",
+    "name": "Risk",
+    "type": "a23eliax",
+    "company": "",
+    "location": "",
+    "category": "Brädspel",
+    "size": 0,
+    "cost": 349,
+    "auxdata": ""
+  },
+  {
+    "ID": "a23eliax_6",
+    "name": "Monopol",
+    "type": "a23eliax",
+    "company": "",
+    "location": "",
+    "category": "Brädspel",
+    "size": 0,
+    "cost": 249,
+    "auxdata": ""
+  }
+]

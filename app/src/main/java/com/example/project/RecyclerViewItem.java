@@ -1,6 +1,6 @@
 package com.example.project;
 
-@SuppressWarnings("WeakerAccess")
+
 public class RecyclerViewItem {
 
     private String title;
