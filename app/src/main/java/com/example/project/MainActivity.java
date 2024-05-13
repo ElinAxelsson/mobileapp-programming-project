@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         myWebView = findViewById(R.id.My_WebView);
         myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
 
-        spel.add(new Spel("1","a23eliax", "Catan", "Brädspel", 399));
-        spel.add(new Spel("2","a23eliax", "Ticket to Ride", "Brädspel", 299));
-        spel.add(new Spel("3","a23eliax", "Risk", "Brädspel", 349));
-        spel.add(new Spel("4","a23eliax", "Uno", "Kortspel", 49));
-        spel.add(new Spel("5","a23eliax", "Monopol", "Brädspel", 249));
+        spel.add(new Spel("a23eliax_1","a23eliax", "Catan", "Brädspel", 399));
+        spel.add(new Spel("a23eliax_2","a23eliax", "Ticket to Ride", "Brädspel", 299));
+        spel.add(new Spel("a23eliax_4","a23eliax", "Uno", "Kortspel", 49));
+        spel.add(new Spel("a23eliax_5","a23eliax", "Risk", "Brädspel", 349));
+        spel.add(new Spel("a23eliax_6","a23eliax", "Monopol", "Brädspel", 249));
 
         for (int i=0;i<spel.size();i++) {
             Log.d("Logga", spel.get(i).toString());
