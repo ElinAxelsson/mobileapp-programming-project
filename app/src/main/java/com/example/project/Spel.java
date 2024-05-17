@@ -53,12 +53,12 @@ public class Spel {
         this.name = name;
     }
 
-    public String getGenre() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(String genre) {
-        this.category = genre;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getCost() {
@@ -74,7 +74,7 @@ public class Spel {
         return "ID: " + id +
                 ", Login: " + login +
                 ", Name: " + name +
-                ", Genre: " + category +
+                ", Category: " + category +
                 ", Cost: " + cost;
     }
 }
