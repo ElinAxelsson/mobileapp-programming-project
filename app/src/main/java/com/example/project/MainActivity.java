@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         myWebView = findViewById(R.id.My_WebView);
         myWebView.setWebViewClient(new WebViewClient());
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         gson = new Gson();
 
@@ -87,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
             showInternalWebPage();
 
+            return true;
+        }
+        if (id == android.R.id.home) {
+            onBackPressed();
             return true;
         }
 
