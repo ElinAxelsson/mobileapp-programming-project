@@ -12,6 +12,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,10 +33,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private RecyclerViewAdapter adapter;
 
     public void showInternalWebPage(){
-        WebView webView = findViewById(R.id.My_WebView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("file:///android_asset/about.html");
+      //  WebView webView = findViewById(R.id.My_WebView);
+      //  webView.getSettings().setJavaScriptEnabled(true);
+       // webView.setWebViewClient(new WebViewClient());
+        // myWebView.loadUrl("file:///android_asset/about.html");
     }
 
     WebView myWebView;
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myWebView = findViewById(R.id.My_WebView);
-        myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
+      //  myWebView = findViewById(R.id.My_WebView);
+      //  myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
 
         gson = new Gson();
 
@@ -57,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
-        new JsonFile(this, this).execute((String) JSON_FILE);
+        //new JsonFile(this, this).execute((String) JSON_FILE);
+        Log.d("Hej", "EO");
+        RecyclerView view = findViewById(R.id.recyclerView);
+        view.setLayoutManager(new LinearLayoutManager(this));
+        view.setAdapter(adapter);
         new JsonTask(this).execute(JSON_URL);
     }
 
@@ -89,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         if(listOfMountains != null) {
             spel.addAll(listOfMountains);
             for (int i = 0; i < spel.size(); i++) {
-                Log.d("Elinparsear", spel.get(i).toString());
+                Log.d("Hej Elinparsear", spel.get(i).toString());
                 recyclerViewItems.add(new RecyclerViewItem(spel.get(i).toString()));
             }
         }

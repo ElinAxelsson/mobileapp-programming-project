@@ -1,5 +1,6 @@
 package com.example.project;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.title.setText(items.get(position).getTitle());
+        Log.d("Hej Recycler","onViewHolder" + items.get(position).getTitle());
     }
 
     @Override
