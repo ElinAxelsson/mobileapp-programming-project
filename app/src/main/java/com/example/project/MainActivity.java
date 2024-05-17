@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,24 +33,29 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     ArrayList<RecyclerViewItem> recyclerViewItems=new ArrayList<>();
     private RecyclerViewAdapter adapter;
 
+    @SuppressLint("SetJavaScriptEnabled")
     public void showInternalWebPage(){
-        WebView webView = findViewById(R.id.My_WebView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
+        myWebView = findViewById(R.id.My_WebView);
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient());
         myWebView.loadUrl("file:///android_asset/about.html");
+
     }
 
     WebView myWebView;
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         myWebView = findViewById(R.id.My_WebView);
-        myWebView.setWebViewClient(new WebViewClient()); // Do not open in Chrome!
+        myWebView.setWebViewClient(new WebViewClient());
+
 
         gson = new Gson();
 
@@ -73,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
        int id = item.getItemId();
         if (id == R.id.action_internal_web) {
@@ -85,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         return super.onOptionsItemSelected(item);
     }
+
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onPostExecute(String json) {
@@ -101,5 +109,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         }
         adapter.notifyDataSetChanged();
     }
+
 
 }
