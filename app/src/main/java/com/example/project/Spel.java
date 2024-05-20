@@ -71,10 +71,8 @@ public class Spel {
 
     @Override
     public String toString() {
-        return "ID: " + id +
-                ", Login: " + login +
-                ", Name: " + name +
-                ", Category: " + category +
-                ", Cost: " + cost;
+        return "Namn: " + name + "\n" +
+                "Kategori: " + category + "\n" +
+                "Pris: " + cost + ":-" + "\n";
     }
 }

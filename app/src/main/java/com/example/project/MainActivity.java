@@ -92,11 +92,26 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             return true;
         }
         if (id == android.R.id.home) {
-            onBackPressed();
+            // Hantera back-knappen i toolbaren
+            if (myWebView.getVisibility() == WebView.VISIBLE && myWebView.canGoBack()) {
+                myWebView.goBack();
+            } else {
+                onBackPressed();
+            }
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onBackPressed() {
+        if (myWebView.getVisibility() == WebView.VISIBLE && myWebView.canGoBack()) {
+            myWebView.goBack();
+        } else if (myWebView.getVisibility() == WebView.VISIBLE) {
+            myWebView.setVisibility(WebView.GONE);  // Göm WebView när användaren trycker på back och det inte finns någon tidigare sida
+        } else {
+            super.onBackPressed();  // Gå tillbaka till föregående aktivitet
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
