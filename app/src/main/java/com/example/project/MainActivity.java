@@ -1,10 +1,8 @@
 package com.example.project;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -55,8 +53,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         myWebView = findViewById(R.id.My_WebView);
         myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setVisibility(WebView.GONE);  // Göm WebView vid start
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         gson = new Gson();
 
@@ -82,10 +82,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-       int id = item.getItemId();
+        int id = item.getItemId();
         if (id == R.id.action_internal_web) {
-            Log.d("hej","Will display internal web page");
+            Log.d("hej", "Will display internal web page");
 
+            myWebView.setVisibility(WebView.VISIBLE);  // Visa WebView
             showInternalWebPage();
 
             return true;
