@@ -10,5 +10,11 @@
         android:title="@string/action_internal_web"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_recycler_view"
+        android:title="Våra spel"
+        app:showAsAction="never" />
+
+
 
 </menu>
